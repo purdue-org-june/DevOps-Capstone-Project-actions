@@ -1,0 +1,19 @@
+name: CI/CD workflow 
+on:
+  push:
+   branches:
+     - master
+jobs:
+  buildandDeploy:
+    runs-on: ubuntu-latest
+    steps:
+     - name: Clone the code
+       uses: actions/checkout@v4
+     - name: Download Java and Maven
+       uses: actions/setup-java@v4
+       with: 
+        distribution: 'temurin'
+        java-version: '11'
+        cache: 'maven'
+     - name: Build the code 
+       run: mvn package
