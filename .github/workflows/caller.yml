@@ -1,4 +1,4 @@
-name: A parent workflow that calls another workflow 
+name: A parent workflow that calls another workflow ...
 on:
  push 
 jobs:
