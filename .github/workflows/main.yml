@@ -5,6 +5,8 @@ on:
      - master
 jobs:
   buildandDeploy:
+    env:
+      imagename: "actionsimage"
     runs-on: ubuntu-latest
     steps:
      - name: Clone the code
@@ -24,3 +26,9 @@ jobs:
        with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+     - name: Build and push Image to dockerhub 
+       uses: docker/build-push-action@v6
+       with:
+         context: .
+         push: true
+         tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.imagename }}:latest
